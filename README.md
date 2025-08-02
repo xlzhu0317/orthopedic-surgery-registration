@@ -17,48 +17,42 @@ conda activate {environment name}
 ```
 
 ## Requirements
-To run this codebase, [PyTorch](https://pytorch.org/get-started/locally/) is required. run the following command:
-
-```bash
-pip install torch==2.0.1+cu118 torchvision==0.15.2+cu118 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu118
-```
 Install packages:
 
 ```bash
 pip install -r requirements.txt
 ```
+To run this codebase, [PyTorch](https://pytorch.org/get-started/locally/) is required. run the following command:
+
+```bash
+pip install torch==2.0.1+cu118 torchvision==0.15.2+cu118 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu118
+```
 
 Install dependencies
 
 ```bash
-export PYTHONPATH=$(pwd)
-rm -rf build geotransformer_core/ext*.so
-python setup.py build develop
+pip install -e .
 ```
 
 
 ## Data Processing
-Download the [dataset](https://drive.google.com/file/d/1OWzgKumHuudOLkco4PV9eFPZNvQuna1q/view?usp=sharing) and unzip
+Download the [dataset](https://drive.google.com/file/d/1M60cFOJw9aDcpTlzWQqfKRFkdXTW2zSu/view?usp=sharing) and unzip to
 
 ```bash
 ./data/dataset
-    ├── femur_left_1
-    ├── femur_left_2
-    ├── femur_right_1
-    ├── femur_right_2
+    ├── Distal Femur
+    ├── Distal Tibia
     ├── lumbar_vertebral
-    ├── plevis_1
-    ├── plevis_2
-    ├── tibia_left_1
-    ├── tibia_left_2
-    ├── tibia_right_1
-    └── tibia_right_2
+    ├── Pelvis
+    ├── Proximal Femur
+    └── Proximal Tibia
+
 ```
 
 Generate the data. run the following command:
 
 ```bash
-python data/orthopedic/data_pkl.py
+python data/data_pkl.py
 ```
 
 
@@ -68,23 +62,23 @@ python data/orthopedic/data_pkl.py
 Use the following command for training:
 
 ```bash
-CUDA_VISIBLE_DEVICES=0 python ./experiments/orthopedic/trainval.py
+CUDA_VISIBLE_DEVICES=0 python trainval.py
 ```
 
 ### Test
 For testing, use the following command and specify the checkpoint path:
 ```bash
-CUDA_VISIBLE_DEVICES=0 python ./experiments/orthopedic/test.py --snapshot={TEST_CKPT_PATH} --benchmark=test 
+CUDA_VISIBLE_DEVICES=0 python test.py --snapshot=./checkpoints/best_model.pth.tar --benchmark=test
 ```
 A pretrained model is also available at:
 
 ```bash
-./output/orthopedic/snapshots/epoch-21.pth.tar
+./checkpoints/best_model.pth.tar
 ```
 
 ### Visualization
 
-To visualize the test results, you can use the following code or add to ./experiments/orthopedic/test.py: 
+To visualize the test results, you can use the following code or add to ./test.py: 
 
 ```bash
 def visualize_random_results(results_dir, num_to_show=50):
@@ -130,9 +124,9 @@ def visualize_random_results(results_dir, num_to_show=50):
         o3d.visualization.draw_geometries([ref_pcd, src_pcd_transformed], window_name=f"After - {scene_name}")     
 ```
 
-It is worth noting that the test results are saved in the ./output/orthopedic/features/test
+It is worth noting that the test results are saved in the ./output as npz format
 
 ## Acknowledgements
 
-The code is heavily borrowed from [Geotansformer](https://github.com/qinzheng93/GeoTransformer).
+The code is heavily borrowed from [Geotansformer](https://github.com/qinzheng93/GeoTransformer) [KPConv](https://github.com/HuguesTHOMAS/KPConv-PyTorch) [DCP](https://github.com/WangYueFt/dcp/blob/master/model.py).
 We thank the authors for their excellent work!

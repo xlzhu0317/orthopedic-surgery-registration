@@ -1,0 +1,7 @@
+# ninja log v5
+2	541	1754141520064156244	/home/allen/桌面/GFM-Net/build/temp.linux-x86_64-cpython-38/src/extensions/extra/cloud/cloud.o	245fa72b4482b0eb
+1	623	1754141520289156022	/home/allen/桌面/GFM-Net/build/temp.linux-x86_64-cpython-38/src/extensions/cpu/grid_subsampling/grid_subsampling_cpu.o	5fabad4c2d057396
+2	974	1754141520641155673	/home/allen/桌面/GFM-Net/build/temp.linux-x86_64-cpython-38/src/extensions/cpu/radius_neighbors/radius_neighbors_cpu.o	742b4428c42c4f2d
+2	17320	1754141536974139508	/home/allen/桌面/GFM-Net/build/temp.linux-x86_64-cpython-38/src/extensions/pybind.o	3c787698300e8304
+1	17438	1754141537093139390	/home/allen/桌面/GFM-Net/build/temp.linux-x86_64-cpython-38/src/extensions/cpu/grid_subsampling/grid_subsampling.o	e0b6eac357e5055
+1	18166	1754141537817138673	/home/allen/桌面/GFM-Net/build/temp.linux-x86_64-cpython-38/src/extensions/cpu/radius_neighbors/radius_neighbors.o	3cbd140390fc4721

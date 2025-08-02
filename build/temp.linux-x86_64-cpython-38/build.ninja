@@ -1,0 +1,29 @@
+ninja_required_version = 1.3
+cxx = c++
+
+cflags = -pthread -B /home/allen/miniconda3/envs/geotransformer/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/allen/miniconda3/envs/geotransformer/lib/python3.8/site-packages/torch/include -I/home/allen/miniconda3/envs/geotransformer/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/home/allen/miniconda3/envs/geotransformer/lib/python3.8/site-packages/torch/include/TH -I/home/allen/miniconda3/envs/geotransformer/lib/python3.8/site-packages/torch/include/THC -I/usr/local/cuda-11.1/include -I/home/allen/miniconda3/envs/geotransformer/include/python3.8 -c
+post_cflags = -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=ext -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++17
+cuda_dlink_post_cflags = 
+ldflags = 
+
+rule compile
+  command = $cxx -MMD -MF $out.d $cflags -c $in -o $out $post_cflags
+  depfile = $out.d
+  deps = gcc
+
+
+
+
+
+build /home/allen/桌面/GFM-Net/build/temp.linux-x86_64-cpython-38/src/extensions/cpu/grid_subsampling/grid_subsampling.o: compile /home/allen/桌面/GFM-Net/src/extensions/cpu/grid_subsampling/grid_subsampling.cpp
+build /home/allen/桌面/GFM-Net/build/temp.linux-x86_64-cpython-38/src/extensions/cpu/grid_subsampling/grid_subsampling_cpu.o: compile /home/allen/桌面/GFM-Net/src/extensions/cpu/grid_subsampling/grid_subsampling_cpu.cpp
+build /home/allen/桌面/GFM-Net/build/temp.linux-x86_64-cpython-38/src/extensions/cpu/radius_neighbors/radius_neighbors.o: compile /home/allen/桌面/GFM-Net/src/extensions/cpu/radius_neighbors/radius_neighbors.cpp
+build /home/allen/桌面/GFM-Net/build/temp.linux-x86_64-cpython-38/src/extensions/cpu/radius_neighbors/radius_neighbors_cpu.o: compile /home/allen/桌面/GFM-Net/src/extensions/cpu/radius_neighbors/radius_neighbors_cpu.cpp
+build /home/allen/桌面/GFM-Net/build/temp.linux-x86_64-cpython-38/src/extensions/extra/cloud/cloud.o: compile /home/allen/桌面/GFM-Net/src/extensions/extra/cloud/cloud.cpp
+build /home/allen/桌面/GFM-Net/build/temp.linux-x86_64-cpython-38/src/extensions/pybind.o: compile /home/allen/桌面/GFM-Net/src/extensions/pybind.cpp
+
+
+
+
+
+
