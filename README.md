@@ -52,7 +52,7 @@ Download the [dataset](https://drive.google.com/file/d/1M60cFOJw9aDcpTlzWQqfKRFk
 Generate the data. run the following command:
 
 ```bash
-python data/data_pkl.py
+python ./data/data_pkl.py
 ```
 
 
